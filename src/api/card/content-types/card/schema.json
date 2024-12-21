@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cards",
+  "info": {
+    "singularName": "card",
+    "pluralName": "cards",
+    "displayName": "Card",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cardNumber": {
+      "type": "string",
+      "required": true
+    },
+    "cardHolder": {
+      "type": "string",
+      "required": true
+    },
+    "cardCvc": {
+      "type": "password",
+      "required": true
+    },
+    "cardExpiry": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
