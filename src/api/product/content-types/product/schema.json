@@ -36,6 +36,12 @@
     },
     "salePrice": {
       "type": "string"
+    },
+    "vendors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::vendor.vendor",
+      "inversedBy": "products"
     }
   }
 }

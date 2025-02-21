@@ -4,7 +4,8 @@
   "info": {
     "singularName": "address",
     "pluralName": "addresses",
-    "displayName": "Address"
+    "displayName": "Address",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -15,14 +16,19 @@
       "type": "string",
       "required": true
     },
-    "coords": {
-      "type": "string",
-      "required": true
-    },
     "users_permissions_user": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "addresses"
+    },
+    "latitude": {
+      "required": true,
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal",
+      "required": true
     }
   }
 }

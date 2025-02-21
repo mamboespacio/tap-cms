@@ -474,6 +474,8 @@ export interface PluginUsersPermissionsUser
     fullName: Schema.Attribute.String & Schema.Attribute.Required;
     dni: Schema.Attribute.String & Schema.Attribute.Required;
     vendors: Schema.Attribute.Relation<'oneToMany', 'api::vendor.vendor'>;
+    addresses: Schema.Attribute.Relation<'oneToMany', 'api::address.address'>;
+    favourites: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -495,17 +497,19 @@ export interface ApiAddressAddress extends Struct.CollectionTypeSchema {
     singularName: 'address';
     pluralName: 'addresses';
     displayName: 'Address';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    coords: Schema.Attribute.String & Schema.Attribute.Required;
     users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'plugin::users-permissions.user'
     >;
+    latitude: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    longitude: Schema.Attribute.Decimal & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -638,6 +642,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     onSale: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     salePrice: Schema.Attribute.String;
+    vendors: Schema.Attribute.Relation<'manyToMany', 'api::vendor.vendor'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -671,7 +676,7 @@ export interface ApiVendorVendor extends Struct.CollectionTypeSchema {
     address: Schema.Attribute.String;
     openingHours: Schema.Attribute.Time & Schema.Attribute.Required;
     closingHours: Schema.Attribute.Time & Schema.Attribute.Required;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'

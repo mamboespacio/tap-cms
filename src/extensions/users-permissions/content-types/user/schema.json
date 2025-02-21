@@ -88,6 +88,15 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::vendor.vendor"
+    },
+    "addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::address.address",
+      "mappedBy": "users_permissions_user"
+    },
+    "favourites": {
+      "type": "json"
     }
   }
 }
