@@ -46,6 +46,22 @@
       "relation": "oneToMany",
       "target": "api::order.order",
       "mappedBy": "vendor"
+    },
+    "latitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "longitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

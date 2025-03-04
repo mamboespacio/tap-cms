@@ -41,7 +41,15 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::vendor.vendor",
-      "inversedBy": "products"
+      "mappedBy": "products"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

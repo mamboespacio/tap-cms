@@ -469,13 +469,13 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     fullName: Schema.Attribute.String & Schema.Attribute.Required;
     dni: Schema.Attribute.String & Schema.Attribute.Required;
     vendors: Schema.Attribute.Relation<'oneToMany', 'api::vendor.vendor'>;
     addresses: Schema.Attribute.Relation<'oneToMany', 'api::address.address'>;
     favourites: Schema.Attribute.JSON;
+    orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -592,6 +592,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     singularName: 'order';
     pluralName: 'orders';
     displayName: 'Order';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -607,8 +608,8 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'pending'>;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     price: Schema.Attribute.String & Schema.Attribute.Required;
+    products: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -643,6 +644,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     onSale: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     salePrice: Schema.Attribute.String;
     vendors: Schema.Attribute.Relation<'manyToMany', 'api::vendor.vendor'>;
+    cover: Schema.Attribute.Media<'images' | 'files'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -682,6 +684,9 @@ export interface ApiVendorVendor extends Struct.CollectionTypeSchema {
       'api::category.category'
     >;
     orders: Schema.Attribute.Relation<'oneToMany', 'api::order.order'>;
+    latitude: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    longitude: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    cover: Schema.Attribute.Media<'images' | 'files'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
