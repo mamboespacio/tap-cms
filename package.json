@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.0.3",
+    "@strapi/plugin-email": "^4.25.12",
     "@strapi/plugin-users-permissions": "5.0.3",
     "@strapi/provider-upload-cloudinary": "^5.10.4",
     "@strapi/strapi": "5.0.3",
@@ -37,4 +38,3 @@
     "uuid": "e1d1e4d7-d07b-4cd9-a624-45c877bd1633"
   }
 }
-
