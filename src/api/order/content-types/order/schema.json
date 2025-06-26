@@ -35,12 +35,16 @@
       "default": "pending",
       "required": true
     },
-    "price": {
-      "type": "string",
-      "required": true
-    },
     "products": {
-      "type": "json"
+      "type": "component",
+      "repeatable": true,
+      "component": "basics.order-product"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "external_reference": {
+      "type": "string"
     }
   }
 }

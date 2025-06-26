@@ -608,8 +608,9 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'pending'>;
-    price: Schema.Attribute.String & Schema.Attribute.Required;
-    products: Schema.Attribute.JSON;
+    products: Schema.Attribute.Component<'basics.order-product', true>;
+    price: Schema.Attribute.Decimal;
+    external_reference: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -643,8 +644,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     onSale: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     salePrice: Schema.Attribute.String;
-    vendors: Schema.Attribute.Relation<'manyToMany', 'api::vendor.vendor'>;
     cover: Schema.Attribute.Media<'images' | 'files'>;
+    vendors: Schema.Attribute.Relation<'manyToMany', 'api::vendor.vendor'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -678,7 +679,6 @@ export interface ApiVendorVendor extends Struct.CollectionTypeSchema {
     address: Schema.Attribute.String;
     openingHours: Schema.Attribute.Time & Schema.Attribute.Required;
     closingHours: Schema.Attribute.Time & Schema.Attribute.Required;
-    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
@@ -687,6 +687,8 @@ export interface ApiVendorVendor extends Struct.CollectionTypeSchema {
     latitude: Schema.Attribute.Decimal & Schema.Attribute.Required;
     longitude: Schema.Attribute.Decimal & Schema.Attribute.Required;
     cover: Schema.Attribute.Media<'images' | 'files'>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

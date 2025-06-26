@@ -96,7 +96,10 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::order.order",
-      "mappedBy": "users_permissions_user"
+      "mappedBy": "users_permissions_user",
+      "mp_url": {
+        "type": "string"
+      }
     }
   }
 }

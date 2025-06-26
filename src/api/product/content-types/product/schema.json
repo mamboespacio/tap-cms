@@ -37,19 +37,20 @@
     "salePrice": {
       "type": "string"
     },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
     "vendors": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::vendor.vendor",
       "mappedBy": "products"
-    },
-    "cover": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
-      "type": "media",
-      "multiple": false
     }
   }
 }
